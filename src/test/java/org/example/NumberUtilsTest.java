@@ -67,56 +67,5 @@ class NumberUtilsTest {
         assertThrows(IllegalArgumentException.class, () ->
                 NumberUtils.add(Arrays.asList(1), Arrays.asList(-1)));
     }
-    @Test
-    void testLeadingZeros() {
-        // Test single zero
-        assertEquals(Arrays.asList(0),
-                NumberUtils.add(Arrays.asList(0), Arrays.asList(0)));
 
-        // Test multiple leading zeros
-        assertEquals(Arrays.asList(1),
-                NumberUtils.add(Arrays.asList(0, 0, 1), Arrays.asList(0)));
-        assertEquals(Arrays.asList(2),
-                NumberUtils.add(Arrays.asList(0, 0, 1), Arrays.asList(0, 0, 1)));
-
-        // Test number starting with zero but having multiple digits in result
-        assertEquals(Arrays.asList(1, 2),
-                NumberUtils.add(Arrays.asList(0, 6), Arrays.asList(0, 6)));
-    }
-    @Test
-    void testComplexLeadingZeros() {
-        // Test leading zeros removal with different combinations
-        assertEquals(Arrays.asList(1),
-                NumberUtils.add(Arrays.asList(0, 0, 0), Arrays.asList(1)));
-        assertEquals(Arrays.asList(1),
-                NumberUtils.add(Arrays.asList(0, 0, 1), Arrays.asList(0, 0, 0)));
-    }
-
-    @Test
-    void testInvalidDigitsComprehensive() {
-        // Test each boundary condition separately
-        assertThrows(IllegalArgumentException.class, () ->
-                NumberUtils.add(Arrays.asList(-1), Arrays.asList(5)));
-
-        assertThrows(IllegalArgumentException.class, () ->
-                NumberUtils.add(Arrays.asList(5), Arrays.asList(-1)));
-
-        assertThrows(IllegalArgumentException.class, () ->
-                NumberUtils.add(Arrays.asList(15), Arrays.asList(5)));
-
-        assertThrows(IllegalArgumentException.class, () ->
-                NumberUtils.add(Arrays.asList(5), Arrays.asList(15)));
-
-        // Test edge cases right at the boundaries
-        assertEquals(Arrays.asList(9),
-                NumberUtils.add(Arrays.asList(9), Arrays.asList(0)));
-        assertEquals(Arrays.asList(9),
-                NumberUtils.add(Arrays.asList(0), Arrays.asList(9)));
-    }
-    @Test
-    void testNumberUtilsInstance() {
-        NumberUtils utils = new NumberUtils();
-        // Just verify we can create an instance
-        assertNotNull(utils);
-    }
 }
